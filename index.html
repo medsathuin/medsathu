@@ -30,3 +30,86 @@
   </div>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medsathu | NEET Global Tracker</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f0f4f8;
+      color: #333;
+      margin: 0;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #0077cc;
+    }
+    section {
+      background: white;
+      padding: 20px;
+      margin: 20px auto;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      max-width: 600px;
+    }
+    textarea {
+      width: 100%;
+      padding: 10px;
+      font-size: 1em;
+    }
+    select, input[type="checkbox"] {
+      margin: 10px 0;
+    }
+    button {
+      background-color: #0077cc;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      font-size: 1em;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #005fa3;
+    }
+  </style>
+</head>
+<body>
+
+  <h1>📚 Medsathu NEET Global Dashboard</h1>
+
+  <section>
+    <h2>📅 Daily Study Planner</h2>
+    <textarea rows="5" placeholder="Write your plan for today..."></textarea>
+  </section>
+
+  <section>
+    <h2>📊 Track NEET Subject Progress</h2>
+    <label><input type="checkbox"> Biology - Class 11</label><br>
+    <label><input type="checkbox"> Biology - Class 12</label><br>
+    <label><input type="checkbox"> Chemistry - Class 11</label><br>
+    <label><input type="checkbox"> Chemistry - Class 12</label><br>
+    <label><input type="checkbox"> Physics - Class 11</label><br>
+    <label><input type="checkbox"> Physics - Class 12</label><br>
+  </section>
+
+  <section>
+    <h2>📈 Mood / Energy Check</h2>
+    <select>
+      <option value="focused">Focused</option>
+      <option value="normal">Normal</option>
+      <option value="tired">Tired</option>
+      <option value="low">Low</option>
+    </select>
+  </section>
+
+  <section style="text-align:center;">
+    <button onclick="window.location.reload()">Logout / Refresh</button>
+  </section>
+
+</body>
+</html>
