@@ -42,13 +42,13 @@
     let currentUser;
 
     auth.onAuthStateChanged(user => {
-      if (user) {
-        currentUser = user.uid;
-        loadTasks();
-      } else {
-        window.location.href = "auth.html";
-      }
-    });
+  if (user) {
+    // show planner content
+  } else {
+    // not logged in, redirect
+    window.location.href = "auth.html";
+  }
+});
 
     function addTask() {
       const task = document.getElementById("task").value;
