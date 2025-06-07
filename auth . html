@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Medsathu Login</title>
+  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
   <style>
     body {
       font-family: 'Segoe UI', sans-serif;
@@ -15,7 +17,7 @@
       width: 300px;
     }
     .auth-box h2 { margin-bottom: 20px; text-align: center; }
-    input[type="text"], input[type="password"] {
+    input[type="email"], input[type="password"] {
       width: 100%; padding: 10px; margin-bottom: 12px; border-radius: 5px; border: 1px solid #ccc;
     }
     button {
@@ -28,109 +30,24 @@
 </head>
 <body>
   <div class="auth-box">
-    <h2 id="form-title">Login</h2>
-    <input type="text" id="username" placeholder="Username" />
+    <h2 id="formTitle">Login</h2>
+    <input type="email" id="email" placeholder="Email" />
     <input type="password" id="password" placeholder="Password" />
     <button onclick="submitAuth()">Submit</button>
     <div class="switch" onclick="toggleForm()">Don't have an account? Register</div>
   </div>
 
   <script>
-    let isLogin = true;
-
-    function toggleForm() {
-      isLogin = !isLogin;
-      document.getElementById("form-title").innerText = isLogin ? "Login" : "Register";
-      document.querySelector(".switch").innerText = isLogin
-        ? "Don't have an account? Register"
-        : "Already have an account? Login";
-    }
-
-    function submitAuth() {
-      const username = document.getElementById("username").value;
-      const password = document.getElementById("password").value;
-
-      if (isLogin) {
-        const savedUser = localStorage.getItem(username);
-        if (savedUser && JSON.parse(savedUser).password === password) {
-          alert("Login successful!");
-          window.location.href = "dashboard.html"; // redirect to dashboard
-        } else {
-          alert("Invalid credentials.");
-        }
-      } else {
-        const user = { username, password };
-        localStorage.setItem(username, JSON.stringify(user));
-        alert("Registered! You can log in now.");
-        toggleForm();
-      }
-    }
-  </script>
-</body>
-</html>
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Medsathu Login</title>
-  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
-  <style>
-    body {
-      background: linear-gradient(to right, #74ebd5, #9face6);
-      font-family: Arial, sans-serif;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 100vh;
-    }
-    .container {
-      background: white;
-      padding: 30px;
-      border-radius: 10px;
-      width: 320px;
-      box-shadow: 0 0 20px rgba(0,0,0,0.2);
-    }
-    input, button {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-    }
-    button {
-      background-color: #6c63ff;
-      color: white;
-      border: none;
-    }
-    .switch {
-      text-align: center;
-      margin-top: 10px;
-      color: #333;
-      cursor: pointer;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2 id="formTitle">Login</h2>
-    <input type="email" id="email" placeholder="Email">
-    <input type="password" id="password" placeholder="Password">
-    <button onclick="submitAuth()">Submit</button>
-    <div class="switch" onclick="toggleForm()">Switch to Register/Login</div>
-  </div>
-
-  <script>
-    // Your Firebase Config
     const firebaseConfig = {
-      apiKey: "YOUR_API_KEY",
-      authDomain: "YOUR_PROJECT.firebaseapp.com",
-      projectId: "YOUR_PROJECT_ID",
-      storageBucket: "YOUR_PROJECT.appspot.com",
-      messagingSenderId: "1234567890",
-      appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyBpWuhoWGHhtNjhMX2wboOIYeKSWPGVjQw",
+  authDomain: "medsathuin.firebaseapp.com",
+  projectId: "medsathuin",
+  storageBucket: "medsathuin.appspot.com",
+  messagingSenderId: "1087859187304",
+  appId: "1:1087859187304:web:32bb82b3857b63cc87a5dd",
+  measurementId: "G-CKB9T80HYB"
     };
 
-    // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
 
@@ -139,6 +56,9 @@
     function toggleForm() {
       isLogin = !isLogin;
       document.getElementById("formTitle").innerText = isLogin ? "Login" : "Register";
+      document.querySelector(".switch").innerText = isLogin
+        ? "Don't have an account? Register"
+        : "Already have an account? Login";
     }
 
     function submitAuth() {
@@ -155,7 +75,7 @@
       } else {
         auth.createUserWithEmailAndPassword(email, password)
           .then(() => {
-            alert("Registration successful! Now you can log in.");
+            alert("Registration successful!");
             toggleForm();
           })
           .catch(err => alert("Registration error: " + err.message));
