@@ -23,7 +23,6 @@
     nav .nav-links .btn {
       padding: 6px 14px; border-radius: 6px; background: #0077cc; color: white;
     }
-    
     .hero {
       background: white; margin: 20px; padding: 40px; border-radius: 12px; 
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -36,14 +35,12 @@
     }
     .stat-card h3 { margin: 0; font-size: 1.1rem; }
     .stat-card p { margin: 0; font-size: 2rem; font-weight: 600; color: #0077cc; }
-
     .timer-card {
       background: #fff5e6; padding: 20px; border-radius: 10px;
       display: flex; flex-direction: column; align-items: center;
     }
     .timer-display { font-size: 3rem; margin: 0; }
     .timer-btn { margin-top: 12px; padding: 8px 16px; background: #f39c12; border: none; border-radius: 6px; color: white; cursor: pointer; }
-
     .features {
       margin: 20px; display: grid; gap: 20px;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -56,7 +53,6 @@
     .feature-box button {
       margin-top: 10px; padding: 8px 14px; background: #6b46c1; color: white; border: none; border-radius: 6px;
     }
-
     footer {
       margin-top: auto; background: #fff; padding: 12px 24px;
       text-align: center; font-size: 0.9rem; color: #888;
@@ -65,7 +61,6 @@
   </style>
 </head>
 <body>
-
   <nav>
     <h1>Medsathu</h1>
     <div class="nav-links">
@@ -93,7 +88,6 @@
       <button class="timer-btn" id="timer-btn">Start</button>
     </div>
   </div>
-
   <section id="features" class="features">
     <div class="feature-box">
       <h3>✍️ Daily Planner</h3>
@@ -108,23 +102,19 @@
       <button onclick="alert('Coming soon')">Open Stats</button>
     </div>
   </section>
-
   <footer>
     © 2025 Medsathu • Empowering learners globally
   </footer>
-
   <script>
     // Pomodoro timer logic
     let timer = 25 * 60, running = false, interval;
     const timerEl = document.getElementById("timer");
     const btn = document.getElementById("timer-btn");
-
     function formatTime(s) {
       const m = String(Math.floor(s/60)).padStart(2,'0');
       const sec = String(s%60).padStart(2,'0');
       return `${m}:${sec}`;
     }
-
     btn.onclick = () => {
       if (running) {
         clearInterval(interval); btn.textContent = 'Start'; running=false;
@@ -136,12 +126,10 @@
         btn.textContent = 'Pause'; running=true;
       }
     };
-
     // Example: load fake data for goal & streak
     document.getElementById("today-goal").textContent = "Complete 5 MCQs";
     document.getElementById("streak").textContent = "4 days";
   </script>
-
 </body>
 </html>
 <!DOCTYPE html>
@@ -167,7 +155,6 @@
       margin: 0 12px; font-weight: 500; color: #2c3e50; text-decoration: none;
     }
     nav .btn { padding: 6px 14px; border-radius: 6px; background: #0077cc; color: white; }
-
     .hero {
       background: white; margin: 20px; padding: 40px; border-radius: 12px;
       box-shadow: 0 4px 12px rgba(0,0,0,0.05);
@@ -186,7 +173,6 @@
     .stat-card p {
       margin: 0; font-size: 2rem; font-weight: 600; color: #0077cc;
     }
-
     .timer-card {
       background: #fff5e6; padding: 20px; border-radius: 10px;
       display: flex; flex-direction: column; align-items: center;
@@ -195,7 +181,6 @@
     .timer-btn { margin-top: 12px; padding: 8px 16px; background: #f39c12;
       border: none; border-radius: 6px; color: white; cursor: pointer;
     }
-
     .features {
       margin: 20px; display: grid; gap: 20px;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -214,7 +199,6 @@
       margin-top: auto; padding: 8px 14px; background: #6b46c1;
       color: white; border: none; border-radius: 6px; cursor: pointer;
     }
-
     footer {
       margin-top: auto; background: #fff; padding: 12px 24px;
       text
