@@ -1,9 +1,6 @@
 # Rathod-sathu
-"Empowering Every Aspirant with Free Tools &amp; Safe Learning" CTA:[Access Learning] [Daily Planner][Features] 📚 Free Study Notes📅 Daily Productivity Tracker✅ Progress Record Sheet  
-<!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
+<head>  <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Medsathu | NEET Tracker</title>
   <style>
@@ -48,15 +45,10 @@
       background-color: #005fa3;
     }
   </style>
-</head>
-<body>
-  <h1>📚 Medsathu NEET Dashboard</h1>
-  <section>
-    <h2>📅 Today's Plan</h2>
+</head><body>  <h1>📚 Medsathu NEET Dashboard</h1>
+  <section>    <h2>📅 Today's Plan</h2>
     <textarea id="dailyPlan" rows="4" placeholder="Write your study plan..."></textarea>
-  </section>
-  <section>
-    <h2>✅ NEET Subject Checklist</h2>
+  </section>  <section>   <h2>✅ NEET Subject Checklist</h2>
     <label><input type="checkbox" class="subject" value="bio11"> Biology 11th</label>
     <label><input type="checkbox" class="subject" value="bio12"> Biology 12th</label>
     <label><input type="checkbox" class="subject" value="chem11"> Chemistry 11th</label>
@@ -64,10 +56,8 @@
     <label><input type="checkbox" class="subject" value="phy11"> Physics 11th</label>
     <label><input type="checkbox" class="subject" value="phy12"> Physics 12th</label>
   </section>
-  <section>
-    <h2>🧠 Mood Tracker</h2>
-    <select>
-      <option>Focused</option>
+  <section> <h2>🧠 Mood Tracker</h2>
+    <select>  <option>Focused</option>
       <option>Normal</option>
       <option>Tired</option>
       <option>Low</option>
@@ -186,9 +176,7 @@
   <section>
     <h2>📅 Today's Plan</h2>
     <textarea id="dailyPlan" rows="4" placeholder="Write your study plan..."></textarea>
-  </section>
-
-  <section>
+  </section>  <section>
     <h2>✅ NEET Subject Checklist</h2>
     <label><input type="checkbox" class="subject" value="bio11">Biology 11th</label>
     <label><input type="checkbox" class="subject" value="bio12">Biology 12th</label>
@@ -198,16 +186,13 @@
     <label><input type="checkbox" class="subject" value="phy12">Physics 12th</label>
   </section>
 
-  <section>
-    <h2>🧠 Mood Tracker</h2>
+  <section>    <h2>🧠 Mood Tracker</h2>
     <select>
       <option>Focused</option>
       <option>Normal</option>
       <option>Tired</option>
       <option>Low</option>
-    </select>
-  </section>
-
+    </select>  </section>
   <section style="text-align:center;">
     <button onclick="clearData()">🧹 Clear All Saved Data</button>
   </section>
