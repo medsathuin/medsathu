@@ -1,0 +1,78 @@
+<!-- dashboard.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Dashboard</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(to right, #43cea2, #185a9d);
+      color: white;
+      padding: 30px;
+    }
+    nav {
+      display: flex;
+      justify-content: space-between;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 15px;
+      border-radius: 12px;
+    }
+    a {
+      color: white;
+      margin: 0 10px;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .logout-btn {
+      background: #fff;
+      color: #185a9d;
+      padding: 6px 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <div>
+      <a href="planner.html">📅 Planner</a>
+      <a href="upload.html">📤 Upload</a>
+    </div>
+    <button class="logout-btn" onclick="logout()">Logout</button>
+  </nav>
+
+  <h1>Welcome to your Dashboard!</h1>
+  <p>Select an option above to continue.</p>
+
+  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
+  <script>
+    const firebaseConfig = {
+      apiKey: "AIzaSyBpWuhoWGHhtNjhMX2wboOIYeKSWPGVjQw",
+      authDomain: "medsathuin.firebaseapp.com",
+      projectId: "medsathuin",
+      storageBucket: "medsathuin.appspot.com",
+      messagingSenderId: "1087859187304",
+      appId: "1:1087859187304:web:32bb82b3857b63cc87a5dd",
+      measurementId: "G-CKB9T80HYB"
+    };
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    auth.onAuthStateChanged(user => {
+      if (!user) {
+        window.location.href = "auth.html";
+      }
+    });
+
+    function logout() {
+      auth.signOut().then(() => {
+        window.location.href = "auth.html";
+      });
+    }
+  </script>
+
+</body>
+</html>
