@@ -50,7 +50,7 @@
     };
     firebase.initializeApp(firebaseConfig);
     const auth = firebase.auth();
-
+    </script>
     function register() {
       const email = document.getElementById("email").value;
       const password = document.getElementById("password").value;
@@ -72,3 +72,29 @@
 
 </body>
 </html>
+<h2>Login</h2>
+<input type="email" id="email" placeholder="Email"><br>
+<input type="password" id="password" placeholder="Password"><br>
+<button onclick="login()">Login</button>
+<button onclick="register()">Register</button>
+
+<script>
+  function register() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    auth.createUserWithEmailAndPassword(email, password)
+      .then(() => alert("Registered!"))
+      .catch(e => alert("Error: " + e.message));
+  }
+
+  function login() {
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+    auth.signInWithEmailAndPassword(email, password)
+      .then(() => {
+        alert("Login successful!");
+        window.location.href = "planner.html";
+      })
+      .catch(e => alert("Login failed: " + e.message));
+  }
+</script>
