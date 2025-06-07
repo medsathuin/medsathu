@@ -1,29 +1,26 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Dashboard</title>
-  <link rel="stylesheet" href="style.css"/>
-  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
-  <script src="firebase.js"></script>
+  <title>Dashboard - Medsathu</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>Dashboard</h1>
-    <a href="planner.html" class="btn">Planner</a>
-    <a href="upload.html" class="btn">Upload</a>
-    <button onclick="logout()">Logout</button>
-  </div>
+  <h1>Dashboard</h1>
+  <p>Welcome to your dashboard!</p>
+  <a href="planner.html">Open Planner</a>
+  <button onclick="logout()">Logout</button>
 
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+  <script src="firebase.js"></script>
   <script>
     const auth = firebase.auth();
     auth.onAuthStateChanged(user => {
-      if (!user) location.href = 'auth.html';
+      if (!user) window.location.href = "auth.html";
     });
+
     function logout() {
-      auth.signOut().then(() => location.href = 'auth.html');
+      auth.signOut().then(() => window.location.href = "auth.html");
     }
   </script>
 </body>

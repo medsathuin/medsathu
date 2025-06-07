@@ -1,34 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Login/Register</title>
-  <link rel="stylesheet" href="style.css"/>
-  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
-  <script src="firebase.js"></script>
+  <title>Login / Register - Medsathu</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Login</h2>
-    <input type="email" id="email" placeholder="Email" />
-    <input type="password" id="password" placeholder="Password" />
-    <button onclick="login()">Login</button>
-    <button onclick="register()">Register</button>
-  </div>
+  <h2>Login</h2>
+  <input type="email" id="login-email" placeholder="Email">
+  <input type="password" id="login-password" placeholder="Password">
+  <button onclick="login()">Login</button>
 
+  <h2>Register</h2>
+  <input type="email" id="register-email" placeholder="Email">
+  <input type="password" id="register-password" placeholder="Password">
+  <button onclick="register()">Register</button>
+
+  <p id="error" style="color:red;"></p>
+
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+  <script src="firebase.js"></script>
   <script>
     const auth = firebase.auth();
+
     function login() {
-      auth.signInWithEmailAndPassword(email.value, password.value)
-        .then(() => location.href = 'dashboard.html')
-        .catch(e => alert(e.message));
+      const email = document.getElementById("login-email").value;
+      const password = document.getElementById("login-password").value;
+      auth.signInWithEmailAndPassword(email, password)
+        .then(() => window.location.href = "dashboard.html")
+        .catch(error => document.getElementById("error").innerText = error.message);
     }
+
     function register() {
-      auth.createUserWithEmailAndPassword(email.value, password.value)
-        .then(() => alert('Registered! Please login.'))
-        .catch(e => alert(e.message));
+      const email = document.getElementById("register-email").value;
+      const password = document.getElementById("register-password").value;
+      auth.createUserWithEmailAndPassword(email, password)
+        .then(() => alert("Registered! Please login."))
+        .catch(error => document.getElementById("error").innerText = error.message);
     }
   </script>
 </body>

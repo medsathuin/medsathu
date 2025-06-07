@@ -1,49 +1,51 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Planner</title>
-  <link rel="stylesheet" href="style.css"/>
-  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js"></script>
-  <script src="firebase.js"></script>
+  <title>Planner - Medsathu</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h2>Your Planner</h2>
-    <input type="text" id="task" placeholder="Enter a task" />
-    <button onclick="addTask()">Add</button>
-    <ul id="taskList"></ul>
-  </div>
+  <h1>Your Daily Planner</h1>
+  <textarea id="task" placeholder="Enter your task..."></textarea>
+  <button onclick="saveTask()">Save Task</button>
+  <ul id="taskList"></ul>
+  <button onclick="logout()">Logout</button>
 
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database.js"></script>
+  <script src="firebase.js"></script>
   <script>
     const auth = firebase.auth();
     const db = firebase.database();
 
     auth.onAuthStateChanged(user => {
-      if (!user) return location.href = 'auth.html';
-      const uid = user.uid;
-      const taskRef = db.ref('tasks/' + uid);
-
-      taskRef.on('value', snapshot => {
-        const tasks = snapshot.val();
-        const taskList = document.getElementById('taskList');
-        taskList.innerHTML = '';
-        for (let id in tasks) {
-          const li = document.createElement('li');
-          li.innerText = tasks[id];
-          taskList.appendChild(li);
-        }
+      if (!user) return window.location.href = "auth.html";
+      const userId = user.uid;
+      const ref = db.ref('tasks/' + userId);
+      ref.on('value', snapshot => {
+        const list = document.getElementById("taskList");
+        list.innerHTML = "";
+        snapshot.forEach(item => {
+          const li = document.createElement("li");
+          li.innerText = item.val();
+          list.appendChild(li);
+        });
       });
     });
 
-    function addTask() {
+    function saveTask() {
       const task = document.getElementById("task").value;
-      const uid = firebase.auth().currentUser.uid;
-      firebase.database().ref('tasks/' + uid).push(task);
-      document.getElementById("task").value = "";
+      const user = auth.currentUser;
+      if (user && task) {
+        const ref = db.ref('tasks/' + user.uid);
+        ref.push(task);
+        document.getElementById("task").value = "";
+      }
+    }
+
+    function logout() {
+      auth.signOut().then(() => window.location.href = "auth.html");
     }
   </script>
 </body>
