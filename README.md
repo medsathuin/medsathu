@@ -1,1 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Medsathu • Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+      margin: 0; font-family: 'Inter', sans-serif;
+      background: #f4f7fa; color: #333;
+      display: flex; flex-direction: column; min-height: 100vh;
+    }
+    nav {
+      background: #fff; padding: 12px 24px; display: flex; align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    nav h1 { margin: 0; font-weight: 700; color: #2c3e50; }
+    nav .nav-links { margin-left: auto; }
+    nav .nav-links a {
+      margin: 0 12px; font-weight: 500; color: #2c3e50; text-decoration: none;
+    }
+    nav .nav-links .btn {
+      padding: 6px 14px; border-radius: 6px; background: #0077cc; color: white;
+    }
+    
+    .hero {
+      background: white; margin: 20px; padding: 40px; border-radius: 12px; 
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .stats { display: flex; flex-direction: column; gap: 16px; }
+    .stat-card {
+      background: #eef3ff; padding: 20px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .stat-card h3 { margin: 0; font-size: 1.1rem; }
+    .stat-card p { margin: 0; font-size: 2rem; font-weight: 600; color: #0077cc; }
 
+    .timer-card {
+      background: #fff5e6; padding: 20px; border-radius: 10px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .timer-display { font-size: 3rem; margin: 0; }
+    .timer-btn { margin-top: 12px; padding: 8px 16px; background: #f39c12; border: none; border-radius: 6px; color: white; cursor: pointer; }
+
+    .features {
+      margin: 20px; display: grid; gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .feature-box {
+      background: white; padding: 20px; border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+    }
+    .feature-box h3 { margin-top: 0; color: #2c3e50; }
+    .feature-box button {
+      margin-top: 10px; padding: 8px 14px; background: #6b46c1; color: white; border: none; border-radius: 6px;
+    }
+
+    footer {
+      margin-top: auto; background: #fff; padding: 12px 24px;
+      text-align: center; font-size: 0.9rem; color: #888;
+      box-shadow: 0 -1px 4px rgba(0,0,0,0.05);
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <h1>Medsathu</h1>
+    <div class="nav-links">
+      <a href="#">Home</a>
+      <a href="#features">Features</a>
+      <a href="#" class="btn">Login</a>
+      <a href="#" class="btn">Register</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <div class="stats">
+      <div class="stat-card">
+        <h3>Today's Goal</h3>
+        <p id="today-goal">—</p>
+      </div>
+      <div class="stat-card">
+        <h3>Study Streak</h3>
+        <p id="streak">0</p>
+      </div>
+    </div>
+    <div class="timer-card">
+      <h3>Pomodoro Timer</h3>
+      <p class="timer-display" id="timer">25:00</p>
+      <button class="timer-btn" id="timer-btn">Start</button>
+    </div>
+  </div>
+
+  <section id="features" class="features">
+    <div class="feature-box">
+      <h3>✍️ Daily Planner</h3>
+      <button onclick="alert('Coming soon')">Open Planner</button>
+    </div>
+    <div class="feature-box">
+      <h3>📂 Upload & Gallery</h3>
+      <button onclick="alert('Coming soon')">Open Uploader</button>
+    </div>
+    <div class="feature-box">
+      <h3>📈 Study Stats</h3>
+      <button onclick="alert('Coming soon')">Open Stats</button>
+    </div>
+  </section>
+
+  <footer>
+    © 2025 Medsathu • Empowering learners globally
+  </footer>
+
+  <script>
+    // Pomodoro timer logic
+    let timer = 25 * 60, running = false, interval;
+    const timerEl = document.getElementById("timer");
+    const btn = document.getElementById("timer-btn");
+
+    function formatTime(s) {
+      const m = String(Math.floor(s/60)).padStart(2,'0');
+      const sec = String(s%60).padStart(2,'0');
+      return `${m}:${sec}`;
+    }
+
+    btn.onclick = () => {
+      if (running) {
+        clearInterval(interval); btn.textContent = 'Start'; running=false;
+      } else {
+        interval = setInterval(() => {
+          if (timer<=0) { clearInterval(interval); alert('Time’s up!'); running=false; btn.textContent='Start'; timer=25*60; }
+          else { timer--; timerEl.textContent = formatTime(timer); }
+        }, 1000);
+        btn.textContent = 'Pause'; running=true;
+      }
+    };
+
+    // Example: load fake data for goal & streak
+    document.getElementById("today-goal").textContent = "Complete 5 MCQs";
+    document.getElementById("streak").textContent = "4 days";
+  </script>
+
+</body>
+</html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Medsathu • Dashboard</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/a2e8f4e3df.js" crossorigin="anonymous"></script>
+  <style>
+    body {
+      margin: 0; font-family: 'Inter', sans-serif;
+      background: #f4f7fa; color: #333;
+      display: flex; flex-direction: column; min-height: 100vh;
+    }
+    nav {
+      background: #fff; padding: 12px 24px; display: flex; align-items: center;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+    }
+    nav h1 { margin: 0; font-weight: 700; color: #2c3e50; }
+    nav .nav-links { margin-left: auto; }
+    nav .nav-links a {
+      margin: 0 12px; font-weight: 500; color: #2c3e50; text-decoration: none;
+    }
+    nav .btn { padding: 6px 14px; border-radius: 6px; background: #0077cc; color: white; }
+
+    .hero {
+      background: white; margin: 20px; padding: 40px; border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+    }
+    .stats { display: flex; flex-direction: column; gap: 16px; }
+    .stat-card {
+      background: #eef3ff; padding: 20px; border-radius: 10px;
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .stat-card i {
+      font-size: 2rem; color: #0077cc;
+      margin-right: 10px;
+    }
+    .stat-card h3 { margin: 0; font-size: 1.1rem; }
+    .stat-card p {
+      margin: 0; font-size: 2rem; font-weight: 600; color: #0077cc;
+    }
+
+    .timer-card {
+      background: #fff5e6; padding: 20px; border-radius: 10px;
+      display: flex; flex-direction: column; align-items: center;
+    }
+    .timer-display { font-size: 3rem; margin: 0; color: #f39c12; }
+    .timer-btn { margin-top: 12px; padding: 8px 16px; background: #f39c12;
+      border: none; border-radius: 6px; color: white; cursor: pointer;
+    }
+
+    .features {
+      margin: 20px; display: grid; gap: 20px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+    .feature-box {
+      background: white; padding: 20px; border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.03);
+      display: flex; flex-direction: column;
+    }
+    .feature-box h3 { margin-top: 0; color: #2c3e50; display: flex; align-items: center; }
+    .feature-box h3 i { margin-right: 10px; color: #6b46c1; }
+    .feature-box img {
+      width: 100%; border-radius: 10px; margin-top: 10px;
+    }
+    .feature-box button {
+      margin-top: auto; padding: 8px 14px; background: #6b46c1;
+      color: white; border: none; border-radius: 6px; cursor: pointer;
+    }
+
+    footer {
+      margin-top: auto; background: #fff; padding: 12px 24px;
+      text
