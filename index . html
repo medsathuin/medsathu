@@ -113,3 +113,159 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Medsathu | NEET Tracker</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #f0f2f5, #e0f7fa);
+      margin: 0;
+      padding: 20px;
+      color: #333;
+    }
+
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      font-size: 2.5rem;
+      margin-bottom: 40px;
+    }
+
+    .container {
+      display: flex;
+      gap: 20px;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+
+    .column {
+      flex: 1;
+      min-width: 280px;
+      background: white;
+      padding: 20px;
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    }
+
+    h2 {
+      font-size: 1.3rem;
+      margin-bottom: 10px;
+      color: #0077cc;
+    }
+
+    textarea, select {
+      width: 100%;
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      font-size: 1em;
+      margin-top: 10px;
+      resize: vertical;
+    }
+
+    label {
+      display: block;
+      margin-top: 10px;
+      font-size: 1em;
+    }
+
+    input[type="checkbox"] {
+      margin-right: 8px;
+    }
+
+    button {
+      margin-top: 20px;
+      padding: 10px 20px;
+      background: #0077cc;
+      color: white;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    button:hover {
+      background: #005fa3;
+    }
+
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🌐 Medsathu Global NEET Dashboard</h1>
+
+  <div class="container">
+    <!-- Column 1: Planner -->
+    <div class="column">
+      <h2>📅 Daily Study Planner</h2>
+      <textarea id="dailyPlan" rows="10" placeholder="Write your study plan for today..."></textarea>
+    </div>
+
+    <!-- Column 2: Subject Checklist -->
+    <div class="column">
+      <h2>✅ Subject Checklist</h2>
+      <label><input type="checkbox" class="subject" value="bio11">Biology 11th</label>
+      <label><input type="checkbox" class="subject" value="bio12">Biology 12th</label>
+      <label><input type="checkbox" class="subject" value="chem11">Chemistry 11th</label>
+      <label><input type="checkbox" class="subject" value="chem12">Chemistry 12th</label>
+      <label><input type="checkbox" class="subject" value="phy11">Physics 11th</label>
+      <label><input type="checkbox" class="subject" value="phy12">Physics 12th</label>
+    </div>
+
+    <!-- Column 3: Mood Tracker and Clear Button -->
+    <div class="column">
+      <h2>🧠 Mood Tracker</h2>
+      <select>
+        <option>Focused</option>
+        <option>Normal</option>
+        <option>Tired</option>
+        <option>Low</option>
+      </select>
+
+      <button onclick="clearData()">🧹 Clear All Saved Data</button>
+    </div>
+  </div>
+
+  <script>
+    // Auto-save planner
+    const planner = document.getElementById("dailyPlan");
+    planner.value = localStorage.getItem("dailyPlan") || "";
+    planner.addEventListener("input", () => {
+      localStorage.setItem("dailyPlan", planner.value);
+    });
+
+    // Save checklist
+    const subjects = document.querySelectorAll(".subject");
+    subjects.forEach((checkbox) => {
+      const saved = localStorage.getItem(checkbox.value);
+      checkbox.checked = saved === "true";
+      checkbox.addEventListener("change", () => {
+        localStorage.setItem(checkbox.value, checkbox.checked);
+      });
+    });
+
+    function clearData() {
+      if (confirm("Clear all saved notes and checklist?")) {
+        localStorage.clear();
+        location.reload();
+      }
+    }
+  </script>
+
+</body>
+</html>
