@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Planner</title>
+  <link rel="stylesheet" href="style.css"/>
+  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-auth.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.11.1/firebase-database.js"></script>
+  <script src="firebase.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h2>Your Planner</h2>
+    <input type="text" id="task" placeholder="Enter a task" />
+    <button onclick="addTask()">Add</button>
+    <ul id="taskList"></ul>
+  </div>
+
+  <script>
+    const auth = firebase.auth();
+    const db = firebase.database();
+
+    auth.onAuthStateChanged(user => {
+      if (!user) return location.href = 'auth.html';
+      const uid = user.uid;
+      const taskRef = db.ref('tasks/' + uid);
+
+      taskRef.on('value', snapshot => {
+        const tasks = snapshot.val();
+        const taskList = document.getElementById('taskList');
+        taskList.innerHTML = '';
+        for (let id in tasks) {
+          const li = document.createElement('li');
+          li.innerText = tasks[id];
+          taskList.appendChild(li);
+        }
+      });
+    });
+
+    function addTask() {
+      const task = document.getElementById("task").value;
+      const uid = firebase.auth().currentUser.uid;
+      firebase.database().ref('tasks/' + uid).push(task);
+      document.getElementById("task").value = "";
+    }
+  </script>
+</body>
+</html>
